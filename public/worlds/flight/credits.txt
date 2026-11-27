@@ -1,0 +1,16 @@
+HEXAMOTION / Alpine flight
+
+The twin-engine civil aircraft model, livery and cloud-bank atlas were created for this simulator.
+
+Orthophotography: ©swisstopo. SWISSIMAGE, Federal Office of Topography swisstopo.
+https://www.swisstopo.admin.ch/en/swissimage
+https://www.swisstopo.admin.ch/en/terms-of-use-free-geodata-and-geoservices
+
+Elevation: Mapzen Terrain Tiles / Tilezen, from the Terrain Tiles archive on AWS. The DEM
+and orthophoto cover the same Web Mercator rectangle in the Bernese Oberland, Switzerland.
+https://registry.opendata.aws/terrain-tiles/
+https://github.com/tilezen/joerd/blob/master/docs/attribution.md
+
+Sky: Kloppenheim 05 (Pure Sky), Poly Haven. CC0.
+https://polyhaven.com/a/kloppenheim_05_puresky
+https://polyhaven.com/license

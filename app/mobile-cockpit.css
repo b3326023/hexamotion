@@ -1,0 +1,544 @@
+/* The handheld cockpit keeps the live mechanism mounted while instruments and sheets change. */
+.mobile-head,
+.mobile-dock,
+.mobile-guide {
+  display: none;
+}
+
+@media (orientation: portrait), (max-width: 760px),
+  (max-height: 650px) and (max-width: 1400px) and (pointer: coarse),
+  (max-height: 600px) and (max-width: 1300px) {
+  html:has(.station-app), body:has(.station-app) {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  .studio {
+    --shell-gap: clamp(6px, 1.9vmin, 12px);
+    --shell-inset: clamp(8px, 2.5vmin, 16px);
+    display: grid;
+    grid-template: auto minmax(0,1fr) auto / minmax(0,1fr);
+    min-height: 0;
+    height: calc(100vh - var(--station-occupied, var(--station-bar, 0px)));
+    height: calc(100dvh - var(--station-occupied, var(--station-bar, 0px)));
+    width: 100%;
+    overflow: hidden;
+    background: #101416;
+    padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+  }
+  .studio > .mast,
+  .studio-main > :is(.page-head,.library,.bottom,.ball-strip),
+  .studio .right-panel > :is(.panel-title,.active-scene,.act-section) {
+    display: none;
+  }
+  .mobile-head {
+    grid-area: 1 / 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    padding: 6px var(--shell-inset) 5px;
+    background: #171b1d;
+    border-bottom: 1px solid #333b3c;
+  }
+  .mobile-identity, .mobile-actions {
+    display: flex;
+    align-items: center;
+  }
+  .mobile-identity {
+    min-width: 0;
+    gap: 9px;
+  }
+  .mobile-identity > svg {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    color: #ff8d62;
+  }
+  .mobile-identity > div { min-width: 0; }
+  .mobile-identity small {
+    display: block;
+    color: #acb5b2;
+    font: italic 700 12px/1 BarlowCond, sans-serif;
+    letter-spacing: .1em;
+  }
+  .mobile-identity h1 {
+    font: 700 clamp(16px, 4.2vmin, 19px)/1.35 var(--sans);
+    color: #f0f0eb;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 2px 0 0;
+  }
+  .mobile-actions { gap: 2px; flex: none; }
+  .mobile-actions button,
+  .mobile-guide,
+  .mobile-dock button,
+  .studio .instrument-header > button,
+  .studio .disc-caption button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    min-height: 44px;
+    min-width: 44px;
+    color: #c5cfcc;
+  }
+  .mobile-actions button { border-radius: 9px; }
+  .mobile-actions button[aria-pressed="true"] { color: #fbb695; }
+  .mobile-actions svg, .mobile-guide svg { width: 19px; height: 19px; }
+  .mobile-actions .m-stop {
+    gap: 5px;
+    color: #ffab90;
+    border: 1px solid #784537;
+    background: #39271f;
+    padding: 0 9px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .mobile-actions .m-stop:is(.engaged,[aria-pressed="true"]) {
+    background: #953f29;
+    color: white;
+  }
+
+  .studio > .studio-main {
+    grid-area: 2 / 1;
+    min-width: 0;
+    min-height: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: var(--shell-gap) var(--shell-inset);
+  }
+  .studio .workspace, .studio .workspace.has-world {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    gap: var(--shell-gap);
+    grid-template: minmax(0,1fr) auto / minmax(0,1fr);
+  }
+  .studio .workspace.has-world {
+    grid-template: minmax(0,1.3fr) minmax(0,.9fr) auto / minmax(0,.71fr) minmax(0,1.29fr);
+  }
+  /* The wide live feed has a real camera aspect; its readings sit beside the live mechanism. */
+  .studio .workspace.has-world > .world-view { display: contents; }
+  .studio .workspace.has-world .world-view > .view-head { display: none; }
+  .studio .workspace.has-world .world-window {
+    grid-area: 1 / 1 / 2 / 3;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    border: 1px solid #46514f;
+    border-radius: 11px;
+    isolation: isolate;
+  }
+  .studio .world-caption {
+    top: 8px;
+    left: 8px;
+    gap: 4px;
+    font: 550 11px/1.3 var(--sans);
+    letter-spacing: .01em;
+    padding: 4px 6px;
+  }
+  .studio .workspace .world-caption svg { width: 12px; }
+  .studio .seismic-trace {
+    width: clamp(115px, 33vw, 145px);
+    padding: 4px 6px 2px;
+    right: 6px;
+    bottom: 6px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .studio .seismic-trace > div { gap: 7px; }
+  .studio .world-broadcast {
+    top: 8px;
+    right: 8px;
+    padding: 4px 6px;
+    gap: 4px;
+    font: 500 10px/1.2 var(--mono);
+  }
+  .studio .workspace .world-data {
+    display: flex;
+    position: relative;
+    grid-area: 2 / 1;
+    min-height: 0;
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: clamp(3px, 1dvh, 10px);
+    padding: 7px clamp(7px, 2.7vmin, 14px);
+    border: 1px solid #354044;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #222b2d, #171c1e 85%);
+    overflow: hidden;
+  }
+  .studio .world-data span {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1px;
+    font-size: clamp(11px, 3vmin, 13px);
+    line-height: 1.25;
+    color: #bec9c5;
+    white-space: nowrap;
+  }
+  .studio .world-data b {
+    font: 500 clamp(15px, 4.4vmin, 23px)/1.22 var(--mono);
+    color: #ffbf9f;
+    font-variant-numeric: tabular-nums;
+  }
+  .studio .world-data > i {
+    display: block;
+    height: 1px;
+    width: 65%;
+    flex: none;
+    background: #4c5656;
+  }
+  .studio .world-data a {
+    position: absolute;
+    inset: auto 0 0 auto;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: end;
+    padding: 0 7px 7px 0;
+    color: #98aaa1;
+  }
+
+  .studio .workspace > .viewer:not(.expanded) {
+    grid-area: 1 / 1;
+    position: relative;
+    height: auto;
+    min-height: 0;
+    min-width: 0;
+    border-radius: 11px;
+    border-color: #4a5351;
+  }
+  .studio .workspace.has-world > .viewer:not(.expanded) { grid-area: 2 / 2; }
+  .studio .workspace .viewer:not(.expanded) > .view-head {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    z-index: 3;
+    color: #283731;
+    padding: 3px 7px;
+    height: auto;
+    min-height: 0;
+    border: 1px solid #84928c70;
+    border-radius: 5px;
+    background: #eef0eabf;
+    pointer-events: none;
+  }
+  .studio .workspace .viewer:not(.expanded) .view-head > div { gap: 4px; }
+  .studio .workspace .viewer:not(.expanded) .view-head h2 { font: 650 12px/1.25 var(--sans); }
+  .studio .workspace .viewer:not(.expanded) .view-head > div:first-child > svg {
+    width: 12px; height: 12px; color: #52665c;
+  }
+  .studio .workspace .viewer:not(.expanded) :is(.view-actions,.label-en,.view-toolbar,.view-foot,.model-id,.machine-tag) {
+    display: none;
+  }
+  .studio .workspace .viewer:not(.expanded) .stage {
+    height: 100%; min-height: 0; flex: 1; width: 100%;
+  }
+  .studio .workspace .viewer:not(.expanded) .live {
+    top: 8px; right: 8px; font-size: 9px; padding: 4px 6px;
+  }
+  .studio .workspace .viewer:not(.expanded) .axis {
+    display: block; left: 2px; bottom: 1px;
+  }
+  .studio .workspace .viewer:not(.expanded) .axis-map { width: 39px; height: 36px; }
+
+  .studio .workspace > .right-panel,
+  .studio .workspace.has-world > .right-panel {
+    grid-area: 2 / 1;
+    min-height: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #41504e;
+    border-radius: 12px;
+    background: linear-gradient(121deg,#252d2e,#1b2022 72%);
+  }
+  .studio .workspace.has-world > .right-panel { grid-area: 3 / 1 / 4 / 3; }
+  .studio .workspace .right-panel .mobile-guide {
+    position: absolute;
+    z-index: 1;
+    right: 4px;
+    top: 2px;
+    height: 44px;
+    border-radius: 7px;
+    color: #b5c6be;
+  }
+  .mobile-guide span { display: none; }
+  .studio .workspace .scene-controls {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: stretch;
+    margin: 0;
+    min-height: 0;
+    max-width: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  .studio .instrument-header {
+    height: 46px;
+    margin: 0 49px 0 12px;
+    border-color: #adbfba24;
+  }
+  .studio .instrument-header > span { font-size: 14px; }
+  .studio .instrument-header > span i { height: 3px; border-radius: 2px; }
+  .studio .instrument-header > button { height: 44px; }
+  .studio .workspace .scene-controls .instrument-face {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: clamp(96px, 22dvh, 202px);
+  }
+  .studio .workspace .world-guidance {
+    order: 1;
+    margin: 0;
+    padding: 4px 12px 10px;
+    font: 500 clamp(12px, 3vmin, 14px)/1.4 var(--sans);
+    color: #b9c6c0;
+  }
+  .studio .world-guidance .world-metric { display: none; }
+  .studio .workspace .drive-tabs {
+    flex: none;
+    border-radius: 8px;
+    padding: 2px;
+    margin: 3px 51px 0 6px;
+    gap: 2px;
+  }
+  .studio .drive-tabs button { height: 44px; font-weight: 600; font-size: 13px; }
+  .studio .workspace .disc-area {
+    min-height: 0;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 5px 8px 0;
+    gap: 2px;
+  }
+  .studio .workspace .gesture-disc {
+    width: clamp(90px, 19dvh, 177px);
+    height: auto;
+    max-width: 55%;
+    flex: 0 1 auto;
+  }
+  .studio .axis-digits { width: 49px; min-width: 0; }
+  .studio .axis-digits small { font: 12px/1.25 var(--sans); letter-spacing: 0; }
+  .studio .axis-digits b { font: 500 clamp(16px, 4.5vmin, 21px)/1.25 var(--mono); }
+  .studio .workspace .disc-caption { margin: 0; padding: 0 5px 0 12px; min-height: 42px; }
+  .studio .disc-caption button { height: 44px; }
+
+  .studio > .mobile-dock {
+    display: grid;
+    align-items: stretch;
+    grid-area: 3 / 1;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 4px;
+    padding: 4px var(--shell-inset) calc(4px + env(safe-area-inset-bottom));
+    background: #191e20;
+    border-top: 1px solid #364143;
+    z-index: 4;
+  }
+  .mobile-dock button {
+    flex-direction: column;
+    gap: 3px;
+    min-height: 48px;
+    border-radius: 8px;
+    font: 600 12px/1.2 var(--sans);
+    color: #afbcba;
+  }
+  .mobile-dock button svg { width: 18px; height: 18px; }
+  .mobile-dock button:is([aria-current="page"],.active) {
+    color: #ffb28a;
+    background: #3a302a;
+    box-shadow: inset 0 0 0 1px #524032;
+  }
+  .studio .toast { z-index: 8; bottom: calc(68px + env(safe-area-inset-bottom)); }
+  .studio .expanded { inset: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+  .studio .expanded .view-actions .icon-btn { width: 44px; height: 44px; }
+  .studio .workspace .viewer.expanded {
+    position: fixed;
+    z-index: 30;
+    min-height: 0;
+    margin: 0;
+    border-radius: 0;
+  }
+  .studio .viewer.expanded .stage { flex: 1; height: auto; min-height: 0; }
+  .studio .viewer.expanded .view-head { min-height: 48px; height: 48px; }
+  .studio .viewer.expanded .view-toolbar button { min-height: 44px; min-width: 44px; }
+  .studio .viewer.expanded .view-foot { min-height: 44px; height: auto; }
+  .studio .viewer.expanded .view-foot button { min-width: 44px; min-height: 44px; }
+  .studio .viewer.expanded .select-cam select { min-height: 44px; }
+
+  @media (orientation: landscape) {
+    .studio {
+      grid-template: auto minmax(0,1fr) / minmax(0,1fr) clamp(52px,7vw,73px);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .mobile-head { padding-block: 2px 2px; }
+    .mobile-identity h1 { font-size: 17px; }
+    .studio > .studio-main { padding: var(--shell-gap); }
+    .studio > .mobile-dock {
+      grid-area: 1 / 2 / 3 / 3;
+      align-content: center;
+      grid-template: repeat(4,minmax(44px, 1fr)) / minmax(0,1fr);
+      gap: clamp(2px, 1.3dvh, 8px);
+      padding: env(safe-area-inset-top) 3px 0;
+      border-left: 1px solid #364143;
+      border-top: 0;
+    }
+    .mobile-dock button { min-height: 44px; }
+    .studio .workspace {
+      grid-template: minmax(0,1fr) / minmax(0,1.25fr) minmax(0,1fr);
+    }
+    .studio .workspace.has-world {
+      grid-template: minmax(0,1fr) auto auto / minmax(0,1.15fr) minmax(0,.95fr);
+    }
+    .studio .workspace.has-world .world-window { grid-area: 1 / 1 / 3 / 2; }
+    .studio .workspace.has-world > .viewer:not(.expanded) { grid-area: 1 / 2; }
+    .studio .workspace > .right-panel { grid-area: 1 / 2; }
+    .studio .workspace.has-world > .right-panel { grid-area: 2 / 2 / 4 / 3; }
+    .studio .workspace.has-world .world-data {
+      grid-area: 3 / 1;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: clamp(6px,2vw,24px);
+      padding: 4px 25px 4px 8px;
+      min-height: 42px;
+    }
+    .studio .world-data span { font-size: 11px; }
+    .studio .world-data b { font-size: 16px; }
+    .studio .world-data > i { width: 1px; height: 23px; }
+    .studio .workspace .world-guidance { display: none; }
+    .studio .workspace .scene-controls .instrument-face {
+      height: clamp(74px, 32dvh, 175px);
+      max-height: none;
+    }
+    .studio .workspace .gesture-disc {
+      width: min(43dvh, 17vw, 225px);
+      max-height: 100%;
+    }
+    .studio .workspace .disc-area { min-height: 0; flex: 1 1 0; }
+    .studio .toast { bottom: max(12px,env(safe-area-inset-bottom)); }
+  }
+  @media (orientation: portrait) and (max-height: 660px) {
+    .mobile-head { padding-block: 2px 2px; }
+    .studio .workspace .world-guidance { display: none; }
+    .studio .workspace .scene-controls .instrument-face { max-height: 20dvh; }
+    .studio .workspace .gesture-disc { width: min(18dvh,124px); }
+    .studio .workspace .world-data { gap: 2px; }
+    .studio .world-data b { font-size: 15px; }
+  }
+  @media (orientation: portrait) {
+    /* A constrained camera frame keeps the whole mechanism legible on tall screens. */
+    .studio .workspace:not(.has-world) {
+      grid-template-rows: minmax(0, min(43dvh, 73vw, 680px)) minmax(0, 1fr);
+    }
+    .studio .workspace.has-world {
+      grid-template-rows: minmax(0, min(33dvh, 64vw, 580px)) minmax(0, min(23dvh, 43vw, 360px)) minmax(0, 1fr);
+    }
+  }
+  @media (orientation: portrait) and (min-height: 820px) {
+    .studio .workspace:not(.has-world) .right-panel > .act-section {
+      display: block;
+      flex: none;
+      margin: 0 10px 8px;
+      padding: 7px 0 0;
+    }
+    .studio .workspace:not(.has-world) .act-rows {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 4px;
+    }
+    .studio .workspace:not(.has-world) .act-rows button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 44px;
+      padding: 0 8px;
+      border: 1px solid #414c49;
+      border-radius: 6px;
+    }
+    .studio .workspace:not(.has-world) .act-rows .track { display: none; }
+  }
+  @media (orientation: portrait) and (min-width: 700px) {
+    .studio .workspace.has-world {
+      grid-template: minmax(0, min(38dvh, 57vw, 620px)) auto minmax(0, 1fr) / repeat(2, minmax(0, 1fr));
+    }
+    .studio .workspace.has-world .world-window { grid-area: 1 / 1 / 2 / 3; }
+    .studio .workspace.has-world .world-data {
+      grid-area: 2 / 1 / 3 / 3;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 24px;
+      padding: 9px 44px 9px 16px;
+    }
+    .studio .workspace.has-world .world-data span { flex-direction: row; align-items: baseline; gap: 7px; }
+    .studio .workspace.has-world .world-data > i { width: 1px; height: 22px; }
+    .studio .workspace.has-world > .viewer:not(.expanded) {
+      grid-area: 3 / 1; height: min(100%, 43vw, 440px); align-self: start;
+    }
+    .studio .workspace.has-world > .right-panel {
+      grid-area: 3 / 2; align-self: start; min-height: min(43vw, 440px);
+    }
+    .studio .workspace.has-world .right-panel > .act-section {
+      display: block; margin: 6px 12px 10px; padding-top: 8px;
+    }
+    .studio .workspace.has-world .act-rows { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 3px 10px; }
+    .studio .workspace.has-world .act-rows button { display: flex; gap: 6px; align-items: center; min-height: 44px; }
+    .studio .workspace.has-world .act-rows button .track { flex: 1; }
+    .studio .workspace:not(.has-world) > .right-panel { justify-content: flex-start; }
+    .studio .workspace .disc-area { flex: 0 1 auto; padding: 12px; }
+    .studio .workspace .gesture-disc { width: min(26vw, 238px); }
+    .studio .workspace:not(.has-world) .act-rows button { justify-content: space-around; }
+  }
+
+  /* Once a wide portrait screen can hold both live cameras and the instrument,
+     give its remaining space to selectable scenes rather than stretching WebGL. */
+  @media (orientation: portrait) and (min-width: 700px) and (min-height: 1120px) and (max-aspect-ratio: 2/3) {
+    .studio > .studio-main {
+      display: flex; flex-direction: column; gap: 14px; overflow: hidden;
+    }
+    .studio .workspace, .studio .workspace.has-world { flex: none; height: auto; }
+    .studio .workspace.has-world {
+      grid-template-rows: min(34dvh, 55vw, 600px) auto auto;
+    }
+    .studio .workspace:not(.has-world) {
+      grid-template-rows: min(40dvh, 65vw, 640px) auto;
+    }
+    .studio .workspace.has-world > .viewer:not(.expanded) {
+      align-self: stretch; height: auto; min-height: min(36vw,365px); max-height: min(42vw,415px);
+    }
+    .studio .workspace.has-world > .right-panel { min-height: 0; }
+    .studio .workspace.has-world .right-panel > .act-section { display: none; }
+    .studio .workspace.has-world .world-guidance { padding-bottom: 14px; }
+    .studio .workspace.has-world .scene-controls .instrument-face {
+      height: min(22vw, 226px); max-height: none;
+    }
+    .studio-main > .library { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; margin: 0; }
+    .studio .library .section-head { flex: none; margin: 0 0 6px; }
+    .studio .library .section-head .eyebrow { display: none; }
+    .studio .library .section-head h2 { font-size: clamp(17px, 2.2vw, 24px); }
+    .studio .library .card-grid {
+      flex: auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+      grid-template-columns: repeat(3, minmax(0,1fr)); gap: 9px; align-content: start; padding: 2px;
+    }
+    .studio .library .scene-card { height: clamp(78px, 10vw, 135px); }
+    .studio .library .card-info b { font-size: clamp(15px, 1.7vw, 21px); }
+  }
+
+}
+

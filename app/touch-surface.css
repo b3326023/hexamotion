@@ -1,0 +1,51 @@
+/* WebKit implements image/link callouts separately from the contextmenu event. */
+:is(#root, .lab-dialog, .lab-select-menu)
+  :where(.right-panel, .view-head, .view-foot, .world-view, .mobile-head, .mobile-dock) {
+  --hex-touch-control: 1;
+  -webkit-touch-callout: none;
+}
+:is(#root, .lab-dialog, .lab-select-menu) :where(.world-guidance, .world-metric) {
+  --hex-touch-control: 0;
+  -webkit-touch-callout: default;
+}
+:is(#root, .lab-dialog, .lab-select-menu)
+  :where(
+    button,
+    [role="button"],
+    [role="tab"],
+    [role="option"],
+    [role="combobox"],
+    [role="slider"],
+    input[type="range"],
+    input[type="checkbox"],
+    input[type="radio"],
+    canvas,
+    .stage,
+    .gesture-disc,
+    .disc-area,
+    .scene-controls,
+    .world-window,
+    .path-editor,
+    .joystick,
+    .view-toolbar
+  ) {
+  --hex-touch-control: 1;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+:is(#root, .lab-dialog, .lab-select-menu)
+  :where(button img, button svg, .instrument-face, .gesture-disc) {
+  -webkit-user-drag: none;
+}
+:is(#root, .lab-dialog, .lab-select-menu)
+  :where(
+    a[href],
+    textarea,
+    input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+    select,
+    [contenteditable]:not([contenteditable="false"])
+  ) {
+  --hex-touch-control: 0;
+  -webkit-touch-callout: default;
+}

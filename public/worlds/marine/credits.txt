@@ -1,0 +1,6 @@
+Broken-cloud sky panorama: Kloofendal 48d Partly Cloudy (Pure Sky)
+Greg Zaal (photography) and Jarod Guest (sky edits), Poly Haven. CC0 1.0.
+Source: https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky
+License: https://polyhaven.com/license
+The original tonemapped panorama was resized for offline WebGL use.
+Vessel, ocean surface, buoy and animations are authored for HEXAMOTION.

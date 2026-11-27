@@ -1,0 +1,122 @@
+.scene-controls {
+  --instrument-color: #9cd4c9;
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  max-width: 470px;
+  margin: 0 auto;
+  align-self: center;
+  color: #dce6df;
+  border: 1px solid #4a5556;
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse at 50% 0%, #33404459, transparent 70%),
+    linear-gradient(140deg, #273032 0%, #1c2427 47%, #222b2e);
+  box-shadow:
+    inset 0 1px #f6fff31a,
+    0 2px 6px #02080838;
+  overflow: hidden;
+}
+.instrument-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 28px;
+  margin: 0 8px 0 11px;
+  border-bottom: 1px solid #afc1bb25;
+  line-height: 1;
+}
+.instrument-header > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 650;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.instrument-header i {
+  display: inline-block;
+  width: 9px;
+  height: 2px;
+  background: var(--instrument-color);
+}
+.instrument-header > button {
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  color: #b7c5c2;
+  min-width: 31px;
+  height: 25px;
+  padding: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.instrument-header > button:hover,
+.instrument-header > button:focus-visible {
+  background: #64736d30;
+  color: var(--instrument-color);
+}
+.instrument-header > button:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+.instrument-face {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 149px;
+  user-select: none;
+  overflow: visible;
+}
+.instrument-label {
+  font:
+    500 11px/1 var(--sans, system-ui),
+    sans-serif;
+  letter-spacing: 0.025em;
+}
+.instrument-reading {
+  font: 600 16px/1 var(--mono, monospace);
+  letter-spacing: -0.025em;
+}
+.instrument-zone {
+  touch-action: none;
+  outline: none;
+  cursor: grab;
+}
+.instrument-zone:active {
+  cursor: grabbing;
+}
+.instrument-zone:focus-visible {
+  stroke: var(--instrument-color);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.instrument-zone[aria-disabled="true"] {
+  cursor: default;
+}
+@media (max-width: 700px) {
+  .scene-controls {
+    max-width: 420px;
+  }
+  .instrument-header {
+    height: 30px;
+  }
+  .instrument-header > button {
+    min-width: 38px;
+    height: 28px;
+  }
+  .instrument-face {
+    max-height: 153px;
+  }
+}
+
+.instrument-command {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

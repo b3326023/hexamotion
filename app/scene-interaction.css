@@ -1,0 +1,113 @@
+/* The live world is the primary input surface. Keep measured commands visually distinct from controls. */
+.world-cue {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  max-width: calc(100% - 76px);
+  padding: 7px 11px 8px 9px;
+  border: 1px solid #f1fff42e;
+  border-left: 2px solid #ffb18a;
+  border-radius: 6px;
+  background: #101a1ddc;
+  color: #fff6ee;
+  box-shadow: 0 2px 8px #0002;
+  line-height: 1.35;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity .18s ease;
+}
+.world-cue[hidden] { display: none; }
+.world-cue > svg { flex: none; color: #ffbc99; }
+.world-cue strong, .world-cue span { display: block; }
+.world-cue strong { font-size: 14px; font-weight: 680; }
+.world-cue span { font-size: 12px; color: #d0ddd7; }
+.world-window[data-dragging] .world-cue { opacity: .35; }
+.world-window:focus-visible { outline: 2px solid #feb48d; outline-offset: -3px; }
+.world-gesture-trace { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; color: #ffbd92; overflow: hidden; }
+.world-gesture-path { fill: none; stroke: currentColor; stroke-width: 2.2px; stroke-linecap: round; filter: drop-shadow(0 1px 2px #23180ed0); }
+.world-gesture-point { fill: #ffae7266; stroke: #fff5e8; stroke-width: 2; filter: drop-shadow(0 1px 3px #23180eaa); }
+.world-gesture-chord { fill: none; stroke: #fff9; stroke-width: 1.5; stroke-dasharray: 4 4; }
+.rig-interaction { color: #a9b7af; font-size: 12px; }
+.workspace.has-world .viewer .label-en { display: none; }
+.studio .workspace.has-world .right-panel > .mobile-guide { display: none; }
+.scene-feedback {
+  grid-area: 1 / 2 / 4 / 3;
+  align-self: center;
+  width: 100%;
+  min-width: 0;
+  color: #e4eae6;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+.feedback-head { display: flex; align-items: center; gap: 4px; }
+.feedback-head h3 { margin: 0 auto 0 0; display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 650; white-space: nowrap; }
+.feedback-head h3 svg { color: var(--feedback-accent); }
+.scene-feedback button { cursor: pointer; }
+.feedback-head button, .feedback-reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px 8px;
+  min-height: 36px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: #c3d1cb;
+  font: 600 12px/1.2 var(--sans);
+}
+.feedback-head .precision-toggle { border-color: #4c5956; background: #26302e; }
+.feedback-head .precision-toggle[aria-expanded="true"] { border-color: var(--feedback-accent); color: var(--feedback-accent); }
+.feedback-head .feedback-icon { width: 34px; padding: 0; }
+.scene-feedback button:hover { color: #fff; background-color: #34403b; }
+.scene-feedback button:disabled { opacity: .45; cursor: default; }
+.feedback-readings { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)) auto; align-items: end; gap: 12px; margin-top: 9px; }
+.command-reading { min-width: 0; padding: 4px 0 6px; }
+.command-reading > div:first-child { display: flex; justify-content: space-between; align-items: baseline; gap: 2px; }
+.command-reading span { color: #bdc9c2; font-size: 12px; }
+.command-reading b { color: #edf2ed; font: 550 18px/1.25 var(--mono); }
+.command-reading small { font-size: .66em; margin-left: 1px; color: #9fafa6; }
+.command-track { position: relative; height: 4px; margin-top: 8px; background: #414c48; border-radius: 2px; }
+.command-track::after { content: ""; position: absolute; left: 50%; top: -2px; width: 1px; height: 8px; background: #bdc9bf; }
+.command-track i { position: absolute; top: 0; height: 100%; background: var(--feedback-accent); border-radius: 2px; }
+.feedback-reset { font-size: 12px; padding-inline: 5px; }
+.scene-feedback .scene-controls { margin-top: 7px; max-width: none; }
+.precision-hint { font: 500 12px/1.5 var(--sans); margin: 6px 2px 0; color: #bbc7c1; }
+@media (orientation: portrait), (max-width: 760px), (max-height: 650px) and (max-width: 1400px) and (pointer: coarse), (max-height: 600px) and (max-width: 1300px) {
+  .world-cue { top: 8px; left: 8px; gap: 7px; padding: 5px 8px; }
+  .world-cue strong { font-size: 13px; }
+  .world-cue span { font-size: 11px; }
+  .studio .workspace .viewer:not(.expanded) .rig-interaction { color: #495d52; font-size: 10px; font-weight: 550; }
+  .studio .workspace.has-world > .right-panel { justify-content: center; }
+  .studio .workspace.has-world .scene-feedback { padding: 4px 12px 8px; }
+  .scene-feedback .feedback-head button, .scene-feedback .feedback-reset { min-height: 44px; }
+  .scene-feedback .feedback-head .feedback-icon { width: 44px; }
+  .studio .workspace.has-world .scene-feedback .scene-controls { max-width: 450px; margin: 0 auto; }
+  .studio .workspace.has-world .right-panel > .world-guidance { display: none; }
+  .scene-feedback .feedback-readings { margin-top: 0; }
+  .precision-hint { margin-top: 2px; }
+}
+@media (orientation: portrait) and (max-width: 699px) {
+  .studio .workspace.has-world {
+    grid-template-rows: minmax(0, min(48dvh, 83vw)) minmax(0, min(31dvh, 60vw)) auto;
+    align-content: center;
+  }
+  .studio .workspace.has-world:has(.scene-feedback[data-precision="true"]) { grid-template-rows: minmax(0, min(36dvh, 68vw)) minmax(0, min(22dvh, 43vw)) auto; }
+  .studio .workspace.has-world .scene-feedback[data-precision="true"] .instrument-face { max-height: min(18dvh, 138px); }
+}
+@media (orientation: portrait) and (max-width: 699px) and (max-height: 700px) {
+  .studio .workspace.has-world .scene-feedback .precision-hint { display: none; }
+  .studio .workspace.has-world .scene-feedback[data-precision="true"] .instrument-face { max-height: 75px; }
+}
+@media (orientation: landscape) and (max-height: 650px) {
+  .studio .workspace.has-world .scene-feedback { padding: 2px 8px 4px; }
+  .studio .workspace.has-world .scene-feedback .precision-hint { display: none; }
+  .studio .workspace.has-world .scene-feedback[data-precision="true"] .instrument-face { height: min(21dvh, 85px); }
+  .world-cue { padding: 4px 7px; }
+}
+@media (prefers-reduced-motion: reduce) { .world-cue { transition: none; } }
+

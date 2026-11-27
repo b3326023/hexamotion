@@ -1,0 +1,13 @@
+import { createRoot } from "react-dom/client";
+import { attachTouchGuards } from "../lib/touch-surface";
+import "./touch-surface.css";
+import Station from "./station";
+import "./studio.css";
+import "./mobile-cockpit.css";
+import "./mobile-sheets.css";
+import "./station.css";
+import "./scene-interaction.css";
+const root = document.getElementById("root")!;
+const detachTouchGuards = attachTouchGuards(root);
+if (import.meta.hot) import.meta.hot.dispose(detachTouchGuards);
+createRoot(root).render(<Station />);

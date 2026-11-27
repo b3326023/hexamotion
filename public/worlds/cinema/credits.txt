@@ -1,0 +1,9 @@
+HEXAMOTION original motion theater, moving seat pods, audience, sound baffles and live projected alpine coaster. Projection uses an independent 3D camera, animated by the film playhead.
+Visible landscape: SWISSIMAGE orthophotography, ©swisstopo, and Mapzen / Tilezen terrain data. The original ride is fictional.
+https://www.swisstopo.admin.ch/en/swissimage
+https://www.swisstopo.admin.ch/en/terms-of-use-free-geodata-and-geoservices
+https://registry.opendata.aws/terrain-tiles/
+https://github.com/tilezen/joerd/blob/master/docs/attribution.md
+Sky: Kloppenheim 05 (Pure Sky), Poly Haven, CC0.
+https://polyhaven.com/a/kloppenheim_05_puresky
+https://polyhaven.com/license

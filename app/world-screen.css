@@ -1,0 +1,624 @@
+.workspace.has-world {
+  grid-template-columns: minmax(0, 1.74fr) minmax(305px, 1fr);
+  scroll-margin-top: 10px;
+}
+.world-view {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #131719;
+}
+.world-window {
+  position: relative;
+  isolation: isolate;
+  height: clamp(285px, 29vw, 470px);
+  overflow: hidden;
+  background: #1e292c;
+}
+.world-webgl,
+.world-loading {
+  position: absolute;
+  inset: 0;
+}
+.world-webgl canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.world-caption,
+.world-broadcast {
+  position: absolute;
+  top: 12px;
+  color: #f8f9f7;
+  background: #142125b8;
+  backdrop-filter: blur(8px);
+  border: 1px solid #eef7f02e;
+  border-radius: 4px;
+  padding: 4px 7px;
+  pointer-events: none;
+}
+.world-caption {
+  left: 12px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.world-broadcast {
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 600 10px/1.5 var(--mono);
+  letter-spacing: 1px;
+}
+.world-broadcast i {
+  width: 6px;
+  height: 6px;
+  background: #8cdfad;
+  border-radius: 50%;
+}
+.world-broadcast.held i {
+  background: #efb878;
+}
+.world-loading {
+  display: grid;
+  place-content: center;
+  gap: 10px;
+  text-align: center;
+  background: #182125e8;
+  color: #e8ece8;
+  font-size: 14px;
+}
+.world-loading button {
+  border: 1px solid #6a797a;
+  border-radius: 4px;
+  padding: 6px;
+}
+.world-data {
+  min-height: 36px;
+  padding: 3px 14px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: #1c2022;
+  font-size: 12px;
+  color: #b7c2be;
+}
+.world-data span {
+  display: flex;
+  gap: 9px;
+  align-items: baseline;
+  white-space: nowrap;
+}
+.world-data b {
+  font: 600 13px var(--mono);
+  color: #ffc19a;
+  font-variant-numeric: tabular-nums;
+}
+.world-data i {
+  height: 12px;
+  width: 1px;
+  background: #525b5b;
+}
+.world-data a {
+  margin-left: auto;
+  padding: 4px;
+  color: #aab4b3;
+}
+.has-world .viewer:not(.expanded) .stage {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+}
+.has-world .viewer:not(.expanded) :is(.model-id, .machine-tag, .label-en) {
+  display: none;
+}
+.has-world .viewer:not(.expanded) .view-toolbar {
+  gap: 1px;
+  bottom: 9px;
+}
+.has-world .viewer:not(.expanded) .view-toolbar button {
+  padding: 4px 6px;
+  font-size: 11px;
+  gap: 3px;
+}
+.has-world .viewer:not(.expanded) .view-foot {
+  min-height: 36px;
+  height: 36px;
+}
+.has-world > .right-panel {
+  grid-column: 1/-1;
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(190px, 0.91fr) minmax(200px, 1fr) minmax(225px, 1fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: 25px;
+  padding: 13px 20px;
+}
+.has-world .panel-title,
+.has-world .active-scene,
+.world-guidance {
+  grid-column: 1;
+}
+.has-world .panel-title {
+  grid-row: 1;
+}
+.has-world .active-scene {
+  grid-row: 2;
+  margin: 6px 0 4px;
+}
+.world-guidance {
+  grid-row: 3;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #bfcbc7;
+  margin: 0;
+}
+.has-world .disc-area {
+  grid-column: 2;
+  grid-row: 1/4;
+  padding: 0;
+  min-height: 0;
+  justify-content: center;
+  gap: 10px;
+}
+.has-world .gesture-disc {
+  width: clamp(107px, 9.2vw, 145px);
+}
+.has-world .disc-caption {
+  display: none;
+}
+.has-world .act-section {
+  grid-column: 3;
+  grid-row: 1/4;
+  padding: 0 0 0 18px;
+  border: 0;
+  border-left: 1px solid var(--line);
+}
+.has-world .act-rows button {
+  height: 19px;
+}
+.has-world .view-head {
+  min-width: 0;
+}
+.has-world .viewer:not(.expanded) .view-head {
+  padding: 0 10px;
+}
+.world-metric {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #acb9b4;
+  margin: 6px 0 0;
+}
+.world-metric strong {
+  color: #ffb58e;
+  font: 13px var(--mono);
+}
+@media (max-width: 880px) and (min-width: 701px) {
+  .workspace.has-world {
+    grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr);
+  }
+  .has-world > .right-panel {
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 12px;
+    padding: 11px;
+  }
+  .has-world .viewer:not(.expanded) .view-foot > span {
+    font-size: 10px;
+  }
+  .has-world .viewer:not(.expanded) .axis {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .workspace.has-world {
+    grid-template-columns: minmax(0, 1fr) minmax(147px, 0.8fr);
+    gap: 9px;
+  }
+  .has-world .world-view {
+    grid-column: 1/-1;
+  }
+  .world-window {
+    height: clamp(202px, 52vw, 320px);
+  }
+  .has-world .viewer:not(.expanded) {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 215px;
+  }
+  .has-world > .right-panel {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 8px;
+  }
+  .has-world .disc-area {
+    gap: 0;
+    min-height: 0;
+  }
+  .has-world .gesture-disc {
+    width: clamp(86px, 23vw, 127px);
+    flex: 0 1 auto;
+  }
+  .has-world .axis-digits {
+    width: 21px;
+    flex-shrink: 1;
+  }
+  .has-world .axis-digits small {
+    font-size: 7px;
+  }
+  .has-world .panel-title h2 {
+    font-size: 13px;
+  }
+  .has-world .panel-title .icon-btn {
+    width: 21px;
+    height: 21px;
+  }
+  .has-world .active-scene {
+    font-size: 10px;
+    margin: 1px 0;
+    gap: 2px;
+    padding: 3px;
+  }
+  .has-world .active-scene button {
+    font-size: 10px;
+  }
+  .world-guidance {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  .world-metric {
+    font-size: 10px;
+    gap: 4px;
+    margin-top: 3px;
+  }
+  .world-metric strong {
+    font-size: 10px;
+  }
+  .has-world
+    .viewer:not(.expanded)
+    :is(
+      .select-cam,
+      .view-actions > i,
+      .view-actions > button[title="擷取畫面"],
+      .view-toolbar,
+      .axis,
+      .view-foot > span
+    ) {
+    display: none;
+  }
+  .has-world .viewer:not(.expanded) .view-head {
+    height: 34px;
+    min-height: 34px;
+    padding: 0 8px;
+  }
+  .has-world .viewer:not(.expanded) .view-head h2 {
+    font-size: 13px;
+  }
+  .has-world .viewer:not(.expanded) .view-foot {
+    justify-content: flex-end;
+    height: 27px;
+    min-height: 27px;
+  }
+  .has-world .viewer:not(.expanded) .view-foot > div {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .has-world .act-section {
+    display: none;
+  }
+  .world-data {
+    min-height: 31px;
+    padding: 2px 9px;
+    gap: 9px;
+    font-size: 11px;
+  }
+  .world-data span {
+    gap: 4px;
+  }
+  .world-data b {
+    font-size: 11px;
+  }
+  .world-caption,
+  .world-broadcast {
+    top: 8px;
+  }
+  .world-caption {
+    left: 8px;
+  }
+  .world-broadcast {
+    right: 8px;
+  }
+}
+.world-window {
+  cursor: grab;
+  touch-action: none;
+}
+.world-window:active {
+  cursor: grabbing;
+}
+.world-caption {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  user-select: none;
+}
+.world-fingertip {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid #fff9;
+  border-radius: 50%;
+  background: #ff994f26;
+  pointer-events: none;
+  box-shadow: 0 0 0 4px #fff2;
+}
+.world-metric a {
+  color: #c7aba0;
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 5px;
+}
+.seismic-trace {
+  position: absolute;
+  pointer-events: none;
+  bottom: 10px;
+  right: 11px;
+  width: 132px;
+  padding: 6px 8px 3px;
+  background: #142125c7;
+  border: 1px solid #f2f4e533;
+  border-radius: 4px;
+  backdrop-filter: blur(6px);
+  color: #eee;
+  font-size: 10px;
+}
+.seismic-trace > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.seismic-trace span::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 2px;
+  margin-right: 3px;
+  vertical-align: middle;
+  background: #e6ece7;
+}
+.seismic-trace span:nth-child(2)::before {
+  background: #ff975e;
+}
+.seismic-trace small {
+  margin-left: auto;
+  color: #bac9c2;
+  font: 9px var(--mono);
+}
+.seismic-trace canvas {
+  display: block;
+  width: 100%;
+  height: 22px;
+}
+@media (max-width: 700px) {
+  .seismic-trace {
+    right: 6px;
+    bottom: 6px;
+    width: 93px;
+    padding: 3px 5px 1px;
+    font-size: 8px;
+  }
+  .seismic-trace > div {
+    gap: 4px;
+  }
+  .seismic-trace canvas {
+    height: 14px;
+  }
+  .world-metric a {
+    font-size: 9px;
+  }
+  .world-caption {
+    font-size: 10px;
+  }
+}
+
+.world-sound {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #41494a;
+  border-radius: 5px;
+  padding: 4px 7px;
+  height: 27px;
+  margin-right: 5px;
+  font-size: 11px;
+  color: #bfccc9;
+}
+.world-sound.is-on {
+  color: #b7e4cc;
+  background: #23332c;
+  border-color: #44624f;
+}
+.has-world .scene-controls {
+  grid-row: 1/4;
+  grid-column: 2;
+}
+.workspace.has-world .right-panel {
+  grid-template-columns: minmax(180px, 0.83fr) minmax(285px, 1.19fr) minmax(150px, 0.76fr);
+}
+@media (max-width: 850px) and (min-width: 701px) {
+  .workspace.has-world .right-panel {
+    grid-template-columns: minmax(140px, 0.7fr) minmax(248px, 1.18fr) minmax(120px, 0.57fr);
+    gap: 5px 11px;
+  }
+}
+@media (max-width: 700px) {
+  .workspace.has-world {
+    grid-template-columns: minmax(0, 1.6fr) minmax(106px, 1fr);
+    gap: 7px;
+  }
+  .workspace.has-world .world-view {
+    grid-row: 1;
+    grid-column: 1;
+    min-width: 0;
+  }
+  .workspace.has-world .viewer:not(.expanded) {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+  }
+  .workspace.has-world .world-window {
+    height: clamp(152px, 39vw, 235px);
+  }
+  .workspace.has-world .world-view .view-head {
+    height: 34px;
+    min-height: 34px;
+    padding: 0 5px;
+    gap: 0;
+  }
+  .world-view .view-head > div {
+    gap: 3px;
+  }
+  .world-view .view-head h2 {
+    font-size: 12px;
+  }
+  .world-view .view-head .label-en,
+  .world-view .view-head > div > svg {
+    display: none;
+  }
+  .world-sound {
+    height: 23px;
+    padding: 2px 4px;
+    margin-right: 1px;
+  }
+  .world-sound span {
+    display: none;
+  }
+  .workspace.has-world .right-panel {
+    grid-column: 1/-1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.52fr);
+    grid-template-rows: auto auto 1fr;
+    gap: 3px 8px;
+    padding: 8px;
+  }
+  .has-world .scene-controls {
+    grid-column: 2;
+    grid-row: 1/4;
+  }
+  .has-world .panel-title {
+    grid-row: 1;
+  }
+  .has-world .active-scene {
+    grid-row: 2;
+  }
+  .world-guidance {
+    grid-row: 3;
+  }
+  .has-world .world-caption {
+    font-size: 8px;
+    left: 4px;
+    top: 4px;
+    padding: 2px 4px;
+  }
+  .has-world .world-caption svg {
+    width: 9px;
+  }
+  .has-world .world-broadcast {
+    top: 4px;
+    right: 4px;
+    font-size: 8px;
+    padding: 2px 3px;
+    gap: 3px;
+  }
+  .world-broadcast i {
+    width: 4px;
+    height: 4px;
+  }
+  .has-world .world-data {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1px;
+    padding: 4px 5px;
+    position: relative;
+    min-height: 37px;
+    justify-content: center;
+  }
+  .world-data i {
+    display: none;
+  }
+  .world-data span {
+    font-size: 9px;
+  }
+  .world-data b {
+    font-size: 10px;
+  }
+  .world-data a {
+    position: absolute;
+    right: 3px;
+    bottom: 5px;
+  }
+  .workspace.has-world .viewer:not(.expanded) .view-foot {
+    min-height: 37px;
+  }
+  .world-view .view-actions .icon-btn {
+    width: 20px;
+  }
+  .has-world .viewer:not(.expanded) .view-head > div {
+    gap: 3px;
+  }
+  .world-metric {
+    line-height: 1.3;
+  }
+  .world-metric > span {
+    display: block;
+  }
+}
+@media (max-width: 470px) {
+  .workspace.has-world .right-panel {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto auto;
+    gap: 5px 8px;
+    padding: 9px;
+  }
+  .workspace.has-world .panel-title {
+    grid-row: 1;
+    grid-column: 1;
+  }
+  .workspace.has-world .active-scene {
+    grid-row: 1;
+    grid-column: 2;
+    gap: 6px;
+  }
+  .workspace.has-world .world-guidance {
+    grid-column: 1/-1;
+    grid-row: 3;
+    line-height: 1.5;
+    font-size: 12px;
+  }
+  .workspace.has-world .scene-controls {
+    grid-column: 1/-1;
+    grid-row: 2;
+    max-width: 440px;
+  }
+  .world-guidance .world-metric {
+    font-size: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .has-world .scene-controls svg.instrument-face {
+    max-height: 118px;
+  }
+}

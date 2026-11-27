@@ -1,0 +1,12 @@
+HEXAMOTION Studio · photonics
+
+Original equipment assemblies, motion, surface graphics and composition created for this simulator.
+
+Poly Haven assets, adapted and bundled locally under CC0 1.0 Universal.
+Industrial Microscope (photorealistic microscope, scale-adjusted for bench)
+https://polyhaven.com/a/industrial_microscope
+
+Studio Small 03 (photographic reflection environment)
+https://polyhaven.com/a/studio_small_03
+
+License: https://polyhaven.com/license

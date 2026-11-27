@@ -1,0 +1,465 @@
+.mobile-readback {
+  display: none;
+}
+@media (orientation: portrait), (max-width: 760px),
+  (max-height: 650px) and (max-width: 1400px) and (pointer: coarse),
+  (max-height: 600px) and (max-width: 1300px) {
+  .mobile-readback {
+    position: absolute;
+    bottom: 8px;
+    left: 9px;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    border-radius: 5px;
+    padding: 4px 7px;
+    background: #10191aca;
+    color: #f0f1ed;
+    font: 11px/1 var(--mono);
+    pointer-events: none;
+  }
+  .mobile-readback b {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .studio-dialog[open],
+  .studio-dialog.wide[open] {
+    --sheet-height: min(86dvh, 800px);
+    --edge: clamp(12px, 4vw, 22px);
+    position: fixed;
+    inset: auto 0 var(--keyboard-inset, 0px);
+    margin: 0 auto;
+    width: min(100%, 680px);
+    max-width: 100%;
+    max-height: min(var(--visible-height, 100dvh), 96dvh);
+    height: min(var(--sheet-height), var(--visible-height, 100dvh));
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid #55605e;
+    border-bottom: 0;
+    border-radius: 22px 22px 0 0;
+    background: #191e20;
+    color: #f0f1eb;
+    box-shadow: 0 -10px 60px #06090980;
+    display: grid;
+    grid-template: auto minmax(0, 1fr) auto / minmax(0, 1fr);
+    overflow: hidden;
+    overscroll-behavior: contain;
+    animation: sheet-arrive 0.19s ease-out;
+  }
+  @keyframes sheet-arrive {
+    from {
+      opacity: 0.5;
+      transform: translateY(14px);
+    }
+  }
+  .studio-dialog::backdrop {
+    background: #070a0b99;
+    backdrop-filter: blur(2px);
+  }
+  .studio-dialog > .sheet-heading {
+    position: relative;
+    padding: 19px var(--edge) 10px;
+    margin: 0;
+    gap: 8px;
+    border-bottom: 1px solid #35403f;
+    touch-action: none;
+  }
+  .sheet-heading::before {
+    content: "";
+    position: absolute;
+    inset: 6px auto auto 50%;
+    width: 34px;
+    height: 4px;
+    background: #78847e;
+    border-radius: 5px;
+    transform: translateX(-50%);
+  }
+  .sheet-heading h2 {
+    margin: 1px 0 0;
+    font-size: clamp(18px, 4.8vw, 23px);
+    line-height: 1.3;
+  }
+  .sheet-heading .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+  .sheet-heading .icon-btn {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    background: #2b3335;
+    border-radius: 50%;
+  }
+  .sheet-heading .sheet-stop {
+    margin-left: auto;
+    color: #ffad9d;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-width: 60px;
+    height: 44px;
+    border-radius: 9px;
+    border: 1px solid #754a42;
+    background: #332726;
+  }
+  .sheet-heading .sheet-stop[aria-pressed="true"] {
+    background: #753a30;
+    color: #fff;
+  }
+  .sheet-body {
+    min-width: 0;
+    min-height: 0;
+    padding: 12px var(--edge) 18px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scroll-padding-block: 12px;
+  }
+  .studio-dialog.wide .sheet-body {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+  .catalog-filters {
+    background: #191e20;
+    padding-bottom: 8px;
+  }
+  .studio-dialog .catalog-search {
+    min-height: 44px;
+    padding: 0 12px;
+    margin: 0;
+    border-radius: 10px;
+  }
+  .catalog-search input {
+    font-size: 16px;
+    min-width: 0;
+    touch-action: manipulation;
+    color-scheme: dark;
+  }
+  .mobile-categories {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 5px;
+  }
+  .mobile-categories button {
+    flex: 1;
+    padding: 0 4px;
+    text-align: center;
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 9px;
+    color: #b6bfb9;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+  .mobile-categories button[aria-pressed="true"] {
+    color: #ffaf87;
+    background: #382c27;
+    border-color: #715042;
+  }
+  .studio-dialog .catalog-grid {
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    align-content: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    padding: 1px 1px 14px;
+  }
+  .studio-dialog .catalog-item {
+    position: relative;
+    display: grid;
+    grid-template: minmax(0, 1fr) auto / minmax(0, 1fr);
+    align-items: stretch;
+    text-align: left;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #3b4747;
+    background: #242b2d;
+  }
+  .studio-dialog .catalog-item.selected {
+    border-color: #ff9f73;
+    box-shadow: inset 0 0 0 1px #ff9f7355;
+  }
+  .catalog-item .catalog-preview,
+  .catalog-item .catalog-manual {
+    width: 100%;
+    height: clamp(50px, 10dvh, 89px);
+    border-radius: 0;
+    object-fit: cover;
+    display: grid;
+  }
+  .studio-dialog .catalog-grid {
+    grid-auto-rows: clamp(64px, 8.8dvh, 82px);
+  }
+  .studio-dialog .catalog-grid .catalog-item {
+    display: block;
+    isolation: isolate;
+    height: 100%;
+    min-height: 0;
+  }
+  .catalog-grid .catalog-item > .catalog-preview,
+  .catalog-grid .catalog-item > .catalog-manual {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .catalog-grid .catalog-item::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(180deg, #05080805 12%, #0710112e 42%, #081011dd 100%);
+    pointer-events: none;
+  }
+  .catalog-grid .catalog-item > div {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+  }
+  .catalog-grid .catalog-item.selected > svg {
+    border: 1px solid #382c24;
+  }
+  .catalog-item .catalog-manual {
+    background: radial-gradient(ellipse at center, #415352, #293231 62%, #212728);
+    color: #f0bd97;
+  }
+  .catalog-item > div {
+    padding: 6px 9px;
+  }
+  .catalog-item small,
+  .catalog-item p,
+  .catalog-item > svg:last-child {
+    display: none;
+  }
+  .catalog-item b {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .catalog-item.selected > svg:last-child {
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 21px;
+    height: 21px;
+    padding: 3px;
+    background: #ffab82;
+    color: #24160f;
+    border-radius: 50%;
+  }
+  .studio-dialog > .mobile-dock {
+    position: static;
+    grid-area: auto;
+    display: grid;
+    grid-template: auto / repeat(4, minmax(0, 1fr));
+    place-content: stretch;
+    align-items: stretch;
+    gap: 4px;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    border: 0;
+    border-top: 1px solid #384140;
+    padding: 5px max(8px, env(safe-area-inset-right)) max(5px, env(safe-area-inset-bottom))
+      max(8px, env(safe-area-inset-left));
+    margin: 0;
+    background: #151a1c;
+  }
+  .studio-dialog > .mobile-dock button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    min-height: 48px;
+    padding: 3px;
+    font-size: 13px;
+    text-align: center;
+  }
+  .studio-dialog > .mobile-dock button::before {
+    display: none;
+  }
+  .sheet-body .detail-metrics {
+    gap: 6px;
+  }
+  .sheet-body .detail-metrics > div {
+    padding: 10px;
+  }
+  .sheet-body .sheet-legs h3,
+  .sheet-section-heading,
+  .sheet-tools h3 {
+    font-size: 16px;
+    margin: 8px 0 10px;
+  }
+  .sheet-legs small {
+    font: 12px var(--mono);
+    color: #aebbb4;
+  }
+  .sheet-legs h3 small {
+    margin-left: 0.35em;
+  }
+  .sheet-legs > div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .sheet-legs button {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    padding: 6px 8px;
+    border: 1px solid #47524f;
+    background: #232a2b;
+    border-radius: 7px;
+  }
+  .sheet-legs b {
+    font: 600 14px var(--mono);
+    color: #f2c3a6;
+  }
+  .sheet-tools,
+  .sheet-section-heading {
+    margin-bottom: 12px;
+  }
+  .machine-choices {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 3px;
+  }
+  .machine-choices button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-height: 55px;
+    color: #d6dfd8;
+    padding: 3px 0;
+    background: #262e2f;
+    border: 1px solid #404b49;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .machine-choices button[aria-pressed="true"],
+  .mobile-command-list button[aria-pressed="true"] {
+    background: #352a25;
+    border-color: #a5745d;
+    color: #ffac85;
+  }
+  .mobile-command-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 10px 0 20px;
+  }
+  .mobile-command-list label,
+  .mobile-command-list button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 46px;
+    padding: 5px 9px;
+    border: 1px solid #3d4844;
+    border-radius: 7px;
+    background: #22292a;
+    color: #dce3de;
+    font-size: 14px;
+  }
+  .mobile-command-list label {
+    grid-column: 1/-1;
+  }
+  .mobile-command-list select {
+    flex: 1;
+    min-width: 40px;
+    border: 0;
+    min-height: 40px;
+    background: transparent;
+    text-align: end;
+    padding-right: 7px;
+    color: #ffb18d;
+    font-size: 16px;
+  }
+  .mobile-command-list svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    color: #98b5a9;
+  }
+  .sheet-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .sheet-links a {
+    padding: 13px 8px;
+    color: #ffb18e;
+    font-size: 14px;
+  }
+  .sheet-body .tools-list a,
+  .sheet-body .doc-link {
+    min-height: 44px;
+  }
+}
+@media (orientation: landscape) and (max-width: 760px),
+  (orientation: landscape) and (max-height: 650px) and (max-width: 1400px) and (pointer: coarse),
+  (orientation: landscape) and (max-height: 600px) and (max-width: 1300px) {
+  .studio-dialog[open],
+  .studio-dialog.wide[open] {
+    inset: 0 0 var(--keyboard-inset, 0px) auto;
+    height: min(100dvh, var(--visible-height, 100dvh));
+    max-height: 100dvh;
+    width: min(72vw, 690px);
+    border-radius: 16px 0 0 16px;
+    --edge: 14px;
+    padding-left: 0;
+    padding-right: env(safe-area-inset-right);
+  }
+  .studio-dialog > .sheet-heading {
+    padding: calc(8px + env(safe-area-inset-top)) var(--edge) 5px;
+  }
+  .sheet-heading::before {
+    display: none;
+  }
+  .studio-dialog .catalog-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .catalog-item .catalog-preview,
+  .catalog-item .catalog-manual {
+    height: clamp(46px, 13vh, 78px);
+  }
+  .sheet-body .detail-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .studio-dialog > .mobile-dock button {
+    flex-direction: row;
+    gap: 6px;
+    min-height: 44px;
+  }
+  .mobile-dock button::after {
+    pointer-events: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-dialog[open] {
+    animation: none;
+  }
+}

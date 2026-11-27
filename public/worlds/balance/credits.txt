@@ -1,0 +1,10 @@
+Balance laboratory, ultrasound-style support displacement monitor, original harness, clinical rails, support plate, furnishings and modeled postural response: HEXAMOTION. The monitor displays measured support-plate displacement. Human motion is an illustrative response, not a clinical prediction or a biomechanical measurement.
+
+Participant: Microsoft Rocketbox Male_Adult_04, MIT.
+https://github.com/microsoft/Microsoft-Rocketbox
+https://github.com/microsoft/Microsoft-Rocketbox/blob/master/LICENSE.md
+GLB conversion by Tanmay, react-ai-voice-avatar, MIT:
+https://github.com/927tanmay/react-ai-voice-avatar/blob/main/assets/avatars/LICENSE.md
+Adaptations here: removed unused facial morph targets, optimized textures, posed arms and torso for the standing task. MIT text in rocketbox-license.txt.
+Window photograph: Spruit Sunrise by Greg Zaal, Poly Haven CC0.
+https://polyhaven.com/a/spruit_sunrise

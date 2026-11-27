@@ -1,0 +1,49 @@
+{
+  "name": "hexamotion-studio",
+  "version": "3.5.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/check-manual.mjs && vite build",
+    "docs:build": "node scripts/build-manual.mjs",
+    "docs:check": "node scripts/check-manual.mjs",
+    "start": "node scripts/serve-local.mjs",
+    "lint": "oxlint app lib scripts tests",
+    "format": "oxfmt",
+    "test": "tsx --test tests/multiball.ts tests/launch.ts tests/circle.ts tests/v2.ts tests/dynamics.ts tests/applications.ts tests/worlds.ts tests/workspace-route.ts tests/world-gestures.ts tests/actuator-orientation.ts"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.7.0",
+    "@dimforge/rapier3d-compat": "^0.20.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "1.31.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-resizable-panels": "4.5.8",
+    "recharts": "3.8.0",
+    "shadcn": "4.18.0",
+    "tailwind-merge": "3.6.0",
+    "three": "^0.186.0",
+    "tw-animate-css": "1.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@types/three": "^0.185.4",
+    "@vitejs/plugin-react": "6.0.2",
+    "oxfmt": "0.61.0",
+    "oxlint": "1.76.0",
+    "oxlint-tsgolint": "7.0.2001",
+    "tailwindcss": "4.2.1",
+    "tsx": "^4.23.13",
+    "typescript": "5.9.3",
+    "vite": "8.0.13"
+  },
+  "type": "module"
+}

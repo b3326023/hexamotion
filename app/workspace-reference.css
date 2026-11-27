@@ -1,0 +1,433 @@
+.station-reference {
+  --ref-accent: #ffb18d;
+  --ref-line: #3b4949;
+  --ref-pad: clamp(16px, 3.4vw, 34px);
+  box-sizing: border-box;
+  position: fixed;
+  inset: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom)) auto;
+  margin: 0;
+  width: min(800px, calc(100vw - 24px));
+  max-width: none;
+  height: calc(
+    100dvh - max(12px, env(safe-area-inset-top)) - max(12px, env(safe-area-inset-bottom))
+  );
+  max-height: none;
+  padding: 0;
+  border: 1px solid #4b5957;
+  border-radius: 15px;
+  background: #1b2123;
+  color: #e9eeea;
+  color-scheme: dark;
+  box-shadow: 0 18px 80px #060a0bab;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  font:
+    16px/1.7 system-ui,
+    "Microsoft JhengHei",
+    sans-serif;
+  text-align: left;
+}
+.station-reference[open] {
+  display: flex;
+  flex-direction: column;
+}
+.station-reference::backdrop {
+  background: #050a0cae;
+}
+body:has(.station-reference[open]) {
+  overflow: hidden;
+}
+.station-reference [hidden] {
+  display: none;
+}
+.station-reference :is(button, select) {
+  font-family: inherit;
+  cursor: pointer;
+}
+.station-reference :is(a, button, select):focus-visible {
+  outline: 2px solid var(--ref-accent);
+  outline-offset: 2px;
+}
+.station-reference :is(.ref-close, .ref-inline, .ref-state button, .ref-image-view button) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--ref-line);
+  border-radius: 8px;
+  background: #293133;
+  color: #e8ece8;
+  font-size: 14px;
+  font-weight: 600;
+}
+.station-reference .ref-header,
+.station-reference .ref-header > div,
+.station-reference .ref-tools,
+.station-reference .ref-downloads,
+.station-reference .ref-chapters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.station-reference .ref-header {
+  flex: none;
+  justify-content: space-between;
+  padding: 11px var(--ref-pad);
+  background: #161c1e;
+  border-bottom: 1px solid var(--ref-line);
+}
+.station-reference .ref-header > div > svg {
+  color: var(--ref-accent);
+  flex-shrink: 0;
+}
+.station-reference .ref-header h2 {
+  margin: 0;
+  color: inherit;
+  line-height: 1.3;
+  font-size: clamp(18px, 3.4vw, 22px);
+  font-weight: 700;
+}
+.station-reference .ref-tools {
+  flex: none;
+  min-width: 0;
+  padding: 4px var(--ref-pad);
+  border-bottom: 1px solid var(--ref-line);
+  background: #20292a;
+  justify-content: space-between;
+}
+.station-reference .ref-chapters {
+  color: #a9c6bb;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+.station-reference .ref-chapters svg {
+  flex-shrink: 0;
+}
+.station-reference .ref-chapters select {
+  display: block;
+  width: 100%;
+  max-width: 355px;
+  text-overflow: ellipsis;
+  min-width: 0;
+  padding: 0 4px;
+  min-height: 44px;
+  font-size: 16px;
+  background: #20292a;
+  color: #e7eee9;
+  border: 0;
+}
+.station-reference .ref-downloads {
+  flex: none;
+  gap: 2px;
+  color: var(--ref-accent);
+}
+.station-reference .ref-downloads svg {
+  margin-right: 3px;
+}
+.station-reference .ref-downloads a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 4px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: var(--ref-accent);
+  font:
+    600 13px/1.3 system-ui,
+    sans-serif;
+}
+.station-reference .ref-body,
+.station-reference .ref-image-view {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #56645e transparent;
+  scrollbar-width: thin;
+}
+.station-reference .ref-body {
+  padding: 21px var(--ref-pad) max(28px, env(safe-area-inset-bottom));
+}
+.station-reference .ref-article {
+  max-width: 72ch;
+  margin: 0 auto;
+  overflow-wrap: anywhere;
+}
+.station-reference .ref-article h1 {
+  font-size: clamp(24px, 4.5vw, 34px);
+  line-height: 1.28;
+  color: #fbf6ed;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+.station-reference .ref-article h2 {
+  margin: 32px 0 13px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ref-line);
+  font-size: clamp(19px, 3.8vw, 23px);
+  color: #f2ede4;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.station-reference .ref-article h3 {
+  margin: 24px 0 8px;
+  font-size: 17px;
+  color: #e3cdb9;
+  font-weight: 650;
+  line-height: 1.45;
+}
+.station-reference .ref-article p {
+  margin: 10px 0;
+}
+.station-reference .ref-article :is(b, strong, dt, th) {
+  font-weight: 650;
+}
+.station-reference .ref-article small {
+  font-size: 13px;
+  color: #bcc8c1;
+}
+.station-reference .ref-article a {
+  color: var(--ref-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.station-reference .ref-article a:hover {
+  color: #ffccb4;
+}
+.station-reference .ref-article a[data-ref-image] {
+  display: block;
+  cursor: zoom-in;
+  border-radius: 7px;
+}
+.station-reference .ref-article img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 7px;
+}
+.station-reference .ref-article ul,
+.station-reference .ref-article ol {
+  margin: 12px 0;
+  padding-left: 1.6em;
+}
+.station-reference .ref-article ul {
+  list-style: disc;
+}
+.station-reference .ref-article ol {
+  list-style: decimal;
+}
+.station-reference .ref-article li {
+  margin: 5px 0;
+}
+.station-reference .ref-article dl {
+  margin: 12px 0;
+  border: 1px solid var(--ref-line);
+  background: #222b2c;
+  border-radius: 8px;
+}
+.station-reference .ref-article dl > div {
+  padding: 11px 14px;
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) 4fr;
+  gap: 14px;
+}
+.station-reference .ref-article dl > div + div {
+  border-top: 1px solid var(--ref-line);
+}
+.station-reference .ref-article dt {
+  color: #ebba97;
+}
+.station-reference .ref-article dd {
+  margin: 0;
+}
+.station-reference .ref-article code {
+  color: #e6bea2;
+  font:
+    0.92em/1.55 ui-monospace,
+    monospace;
+}
+.station-reference .ref-article pre {
+  padding: 13px 15px;
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 16px 0;
+  white-space: pre;
+  background: #12191a;
+  border-radius: 7px;
+}
+.station-reference .ref-table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 14px 0;
+}
+.station-reference .ref-article table {
+  min-width: min(435px, 110vw);
+  width: 100%;
+  border-collapse: collapse;
+  background: #202728;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.station-reference .ref-article :is(th, td) {
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid var(--ref-line);
+  padding: 7px 9px;
+}
+.station-reference .ref-article th {
+  background: #2d3939;
+  color: #f3f0e5;
+}
+.station-reference .ref-cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+  gap: 10px;
+}
+.station-reference .ref-cases article {
+  border: 1px solid var(--ref-line);
+  border-radius: 8px;
+  background: #232c2d;
+  overflow: hidden;
+  padding-bottom: 8px;
+}
+.station-reference .ref-cases img {
+  aspect-ratio: 2/1;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+.station-reference .ref-cases .ref-scene-link {
+  text-decoration: none;
+  display: block;
+}
+.station-reference .ref-scene-link strong {
+  padding: 6px 9px;
+  display: flex;
+  justify-content: space-between;
+}
+.station-reference .ref-scene-link span {
+  font-size: 13px;
+  color: #c1c8bd;
+}
+.station-reference .ref-cases p {
+  margin: 4px 9px;
+  font-size: 14px;
+}
+.station-reference .ref-cases .ref-audio {
+  color: #bdcdc5;
+}
+.station-reference .ref-credit {
+  white-space: pre-line;
+}
+.station-reference .ref-state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 6px 0;
+}
+.station-reference .ref-image-view {
+  padding: 16px var(--ref-pad);
+}
+.station-reference .ref-image-view img {
+  margin: 14px 0;
+  display: block;
+  width: max(100%, min(1100px, 200vw));
+  max-width: none;
+  height: auto;
+}
+.station-reference .ref-image-view button {
+  position: sticky;
+  inset: 0 auto auto 0;
+}
+@media (max-width: 700px) {
+  .station-reference {
+    inset: auto 0 0;
+    margin: 0;
+    width: 100%;
+    height: min(94dvh, calc(100dvh - env(safe-area-inset-top)));
+    border-radius: 16px 16px 0 0;
+    border-bottom: 0;
+  }
+  .station-reference .ref-tools,
+  .station-reference .ref-header {
+    padding-left: max(14px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+  .station-reference .ref-header {
+    padding-block: 6px;
+  }
+  .station-reference .ref-downloads svg {
+    display: none;
+  }
+  .station-reference .ref-article dl > div {
+    display: block;
+  }
+}
+@media (max-height: 430px) and (orientation: landscape) {
+  .station-reference {
+    width: min(84vw, 850px);
+    inset: 0 env(safe-area-inset-right) 0 auto;
+    height: 100dvh;
+    border-radius: 12px 0 0 12px;
+  }
+  .station-reference .ref-header {
+    padding-block: 2px;
+  }
+}
+@media print {
+  body:has(.station-reference[open])
+    *:not(:has(.station-reference[open])):not(.station-reference):not(.station-reference *) {
+    display: none !important;
+  }
+  html:has(.station-reference[open]),
+  body:has(.station-reference[open]),
+  body *:has(.station-reference[open]),
+  .station-reference[open],
+  .station-reference .ref-body {
+    display: block !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: white !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .station-reference::backdrop {
+    background: transparent;
+  }
+  .station-reference :is(.ref-header, .ref-tools, .ref-image-view) {
+    display: none;
+  }
+  .station-reference .ref-article,
+  .station-reference .ref-article * {
+    color: #161616 !important;
+    background: transparent !important;
+    border-color: #aaa;
+  }
+  .station-reference .ref-article {
+    max-width: none;
+  }
+  .station-reference :is(.ref-table-wrap, pre) {
+    overflow: visible;
+  }
+  .station-reference :is(h1, h2, h3) {
+    break-after: avoid;
+  }
+  .station-reference :is(tr, dl > div) {
+    break-inside: avoid;
+  }
+}
