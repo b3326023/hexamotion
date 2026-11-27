@@ -91,7 +91,7 @@
     "lib/worlds/wave-field.ts": "74933b39f9014f466a3a51786f857bdcdb87ab6a3b4fc3eae67e7e5d37fc79ac",
     "package.json": "ffc08fce8caa48c3944c2d520ee4db501a1b99d79350354da8ab593a4cfe322f",
     "pnpm-lock.yaml": "6b0f10bf10be31681314c37b26fe6832030127ced335e1e60c4ffd94045e53df",
-    "README.md": "bd96b7a7beac4c6c5f0df5c8b76b67300da44d4bc2fe9096137efcb364e37d3a",
+    "README.md": "05afcaf37b193f9b8c8633c297aab4c1216ce656d0e5faadfd3421d868443e4e",
     "scripts/build-manual.mjs": "b996f9780889475a4dac415e0c63407fd197811bbcd51965b54483ddb820449c",
     "scripts/build-manual.py": "55518d6fbe531ec31c4cfe30819a7e0758cf324019a0609fc6c715c731e51ba3",
     "scripts/check-manual.mjs": "c398e8b514631c503d3d46990b45bf217589427e250dcb30ef489860137e6cb3",
@@ -104,6 +104,6 @@
   "outputs": {
     "index.html": "33e69426be10cc02c504c24cda1210cb78f6fa55e4c90a22ea533ade9f275df2",
     "stewart-playground-manual.md": "21295eb752427d69806d29d4fafa3be0e85a8d97d7d175603038b50ce121bc96",
-    "stewart-playground-manual.pdf": "ca18e6b71d8f9391d83421fbf8b8450feec5db8947ed9a53d9d5514e26e7e6b0"
+    "stewart-playground-manual.pdf": "2617941e2f1fdc483a89ec1dbab41eea03b0c1dff297ceb602b49144d872bf38"
   }
 }

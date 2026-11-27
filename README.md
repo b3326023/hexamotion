@@ -1,5 +1,7 @@
 # HEXAMOTION
 
+[English](README.en.md) · [GitHub Pages 線上體驗](https://b3326023.github.io/hexamotion/)
+
 HEXAMOTION 是可在桌面與手機瀏覽器操作的六軸 Stewart 平台模擬器。在賽道上拖曳賽車、在海面上改變浪向，旁邊的機構視窗會同步呈現六支致動器如何伸縮，以及台面如何轉向、傾斜或保持水平。[開啟線上工作室](https://hexamotion-studio.ywcheng.chatgpt.site)
 
 ## 系統摘要
