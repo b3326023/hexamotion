@@ -1,0 +1,4 @@
+# The manual manifest verifies the exact bytes of its downloadable files.
+/public/docs/index.html -text
+/public/docs/stewart-playground-manual.md -text
+/public/docs/stewart-playground-manual.pdf binary
